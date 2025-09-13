@@ -1,0 +1,36 @@
+# Base class
+class Device:
+    def __init__(self, brand, model):
+        self.brand = brand
+        self.model = model
+
+    def info(self):
+        return f"{self.brand} {self.model}"
+
+
+# Child class inheriting from Device
+class Smartphone(Device):
+    def __init__(self, brand, model, storage, battery):
+        super().__init__(brand, model)  # Call parent constructor
+        self.storage = storage
+        self.battery = battery
+
+    def call(self, number):
+        print(f" Calling {number} from {self.info()}...")
+
+    def charge(self, percent):
+        self.battery += percent
+        if self.battery > 100:
+            self.battery = 100
+        print(f" {self.info()} charged to {self.battery}%")
+
+    def phone_info(self):
+        return f"{self.info()} | Storage: {self.storage}GB | Battery: {self.battery}%"
+
+
+# Example usage
+phone1 = Smartphone("Samsung", "Galaxy S22", 128, 75)
+print(phone1.phone_info())
+phone1.call("123-456-789")
+phone1.charge(30)
+print(phone1.phone_info())
